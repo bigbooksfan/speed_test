@@ -29,7 +29,7 @@ void vec_erase(random_device* dev)
 
 	int a = dist1(*dev);
 	vec.erase(vec.begin() + a);		// random value remove, size is (N-1) now
-	cout << endl << a + 1 << "-th element erased. N is " << vec.size() << " now.\n";
+	cout << a + 1 << "-th element erased. N is " << vec.size() << " now.\n";
 
 }
 
@@ -92,16 +92,29 @@ unsigned MY(unsigned N, vector<unsigned>* input)
 	chrono::duration<float> duration = end - start;
 	cout << "RESIZE time is " << duration.count() << endl;
 
-
+	start = chrono::high_resolution_clock::now();
 	for (i = 0; i < N - 1; ++i) 
 	{		
 		check[(*input)[i] - 1] = false;
 	}
+	end = chrono::high_resolution_clock::now();
 
+	duration = end - start;
+	cout << "CHECK time is " << duration.count() << endl;
+
+	start = chrono::high_resolution_clock::now();
 	for (i = 0; i < N; ++i) if (check[i]) {
+
+
+		end = chrono::high_resolution_clock::now();
+
+		duration = end - start;
+		cout << "ALGORYTHM time is " << duration.count() << endl;
 
 		return i + 1;
 	}
+
+
 	return 999999999;
 	   
 
